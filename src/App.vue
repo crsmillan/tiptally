@@ -2,13 +2,13 @@
   <div>
     <Navbar />
     <BreadcumHeader title="Pago de Propinas" :cash_box="580000" />
-    <img alt="Vue logo" src="./assets/logo.png">
-
-    <div class="container-fluid">
+  
+    <div class=" container-fluid">
       <div class="row">
         <div class="col">
           <!-- Contenido de la primera sección -->
           <div style="background-color: lightblue;">Sección 1</div>
+          <BillSplitter/>
         </div>
         <div class="col">
           <!-- Contenido de la segunda sección -->
@@ -34,13 +34,14 @@
 <script>
 import Navbar from './components/NavBar.vue';
 import BreadcumHeader from './components/BreadcumHeader.vue';
+import BillSplitter from '@/components/Home/BillSplitter.vue'
 
 export default {
   name: 'App',
   components: {
-
     Navbar,
-    BreadcumHeader
+    BreadcumHeader,
+    BillSplitter
   }
 }
 </script>
