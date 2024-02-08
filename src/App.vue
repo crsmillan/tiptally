@@ -3,45 +3,62 @@
     <Navbar />
     <BreadcumHeader title="Pago de Propinas" :cash_box="580000" />
   
-    <div class=" container-fluid">
-      <div class="row">
-        <div class="col">
-          <!-- Contenido de la primera sección -->
-          <div style="background-color: lightblue;">Sección 1</div>
-          <BillSplitter/>
-        </div>
-        <div class="col">
-          <!-- Contenido de la segunda sección -->
-          <div style="background-color: lightgreen;">Sección 2</div>
-        </div>
-        <div class="col">
-          <!-- Contenido de la tercera sección -->
-          <div style="background-color: lightcoral;">Sección 3</div>
+    <main class="container">
+      <div class=" container-fluid">
+        <div class="row">
+          <div class="col">
+            <BillSplitter/>
+          </div>
+          <div class="col">
+            <TouchCalculator/>
+          </div>
+          <div class="col">
+            <TipHistory :history="tips"/>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="row seccion-4">
-      <div class="col-12">
-        <!-- Contenido de la cuarta sección -->
-        <div style="background-color: lightgray;">Sección 4 (Ocupa todo el ancho)</div>
+  
+      <div class="row seccion-4">
+        <div class="col-12">
+          <!-- Contenido de la cuarta sección -->
+          <div style="background-color: lightgray;">Sección 4 (Ocupa todo el ancho)</div>
+        </div>
       </div>
-    </div>
-
+    </main>
   </div>
 </template>
 
 <script>
 import Navbar from './components/NavBar.vue';
 import BreadcumHeader from './components/BreadcumHeader.vue';
-import BillSplitter from '@/components/Home/BillSplitter.vue'
+import BillSplitter from '@/components/Home/BillSplitter.vue';
+import TouchCalculator from './components/Home/TouchCalculator.vue';
+import TipHistory from '@/components/Home/TipHistory.vue';
 
 export default {
   name: 'App',
   components: {
     Navbar,
     BreadcumHeader,
-    BillSplitter
+    BillSplitter,
+    TouchCalculator,
+    TipHistory
+  },
+  data(){
+    return {
+      tips: [
+        { paymentMethod: 'Efectivo', amount: 10.50 },
+        { paymentMethod: 'citi', amount: 10.50 },
+        { paymentMethod: 'bbva 2023', amount: 10.50 },
+        { paymentMethod: 'Efectivo', amount: 10.50 },
+        { paymentMethod: 'Efectivo', amount: 10.50 },
+        { paymentMethod: 'Efectivo', amount: 10.50 },
+        { paymentMethod: 'Efectivo', amount: 10.50 },
+        { paymentMethod: 'Efectivo', amount: 10.50 },
+        { paymentMethod: 'Tarjeta de crédito', amount: 15.75 },
+        // Otras propinas
+      ]
+    }
   }
 }
 </script>
