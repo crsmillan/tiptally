@@ -20,8 +20,7 @@
   
       <div class="row seccion-4">
         <div class="col-12">
-          <!-- Contenido de la cuarta sección -->
-          <div style="background-color: lightgray;">Sección 4 (Ocupa todo el ancho)</div>
+          <ResumeSubmit :totalPaid="100" :remainingToPay="30000"/>
         </div>
       </div>
     </main>
@@ -34,6 +33,7 @@ import BreadcumHeader from './components/BreadcumHeader.vue';
 import BillSplitter from '@/components/Home/BillSplitter.vue';
 import TouchCalculator from './components/Home/TouchCalculator.vue';
 import TipHistory from '@/components/Home/TipHistory.vue';
+import ResumeSubmit from '@/components/Home/ResumeSubmit.vue';
 
 export default {
   name: 'App',
@@ -42,7 +42,8 @@ export default {
     BreadcumHeader,
     BillSplitter,
     TouchCalculator,
-    TipHistory
+    TipHistory, 
+    ResumeSubmit
   },
   data(){
     return {
