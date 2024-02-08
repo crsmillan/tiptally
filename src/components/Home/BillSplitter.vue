@@ -4,6 +4,7 @@
 			<div class="col">
 				<div class="section">
 					<h2>Total de propinas</h2>
+					<span class="total-tip-amount">{{ formattedTotalTipAmount }}</span>
 				</div>
 			</div>
 			<div class="col">
@@ -15,7 +16,7 @@
 						</div>
 						<div class="col-12">
 							<input type="text" v-model="tipDividedIn" class="form-control rounded-input">
-							<!-- <button @click="saveData" class="btn btn-primary rounded-button">Guardar</button> -->
+							<span class="dividedbypeople">{{ dividedByPeople }}</span>
 						</div>
 					</div>
 				</div>
@@ -38,7 +39,7 @@
 		</div>
 	</div>
 </template>
-  
+
 <script>
 export default {
 	data() {
@@ -52,6 +53,12 @@ export default {
 			]
 		};
 	},
+	props: {
+		totalTipAmount: {
+			type: Number,
+			default: 0 // Valor predeterminado en caso de que no se proporcione totalTipAmount
+		}
+	},
 	methods: {
 		saveData() {
 			console.log('Datos ingresados:', this.tipDividedIn);
@@ -60,24 +67,45 @@ export default {
 			this.selectedPaymentMethod = method;
 			console.log('Método de pago seleccionado:', method);
 		}
+	},
+	computed: {
+		formattedTotalTipAmount() {
+			// Formatea el prop totalTipAmount como moneda
+			return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(this.totalTipAmount);
+		},
+		dividedByPeople() {
+			// Calcula el valor dividido por el número de personas
+			const divided = this.tipDividedIn ? this.totalTipAmount / parseInt(this.tipDividedIn) : this.totalTipAmount;
+			return `$ ${divided} por persona`;
+		}
 	}
 };
 </script>
-  
+
 <style scoped>
 .section {
-	background-color: #f8f9fa;
-	/* Color de fondo de las secciones */
 	padding: 20px;
 	/* Espacio interno de las secciones */
-	border: 1px solid #dee2e6;
-	/* Borde de las secciones */
-	border-radius: 5px;
-	/* Borde redondeado de las secciones */
 	height: 100%;
 	/* Altura de las secciones */
 	margin-top: 2rem;
 	margin-bottom: 1rem;
+}
+
+.total-tip-amount {
+	display: inline-block;
+	padding: 10px 15px;
+	border-radius: 10px;
+	background-color: #F6DFDB; /* Cambio de color de fondo del span */
+	color: #DD7160; /* Cambio de color de texto del span */
+	font-weight: bold;
+	
+}
+
+.dividedbypeople {
+	font-weight: bold;
+	margin-top: 10px;
+	display: block;
 }
 
 .rounded-input {
@@ -144,5 +172,5 @@ export default {
 	/* Color de fondo de la tarjeta seleccionada */
 	color: white;
 	/* Color de texto de la tarjeta seleccionada */
-}</style>
-  
+}
+</style>

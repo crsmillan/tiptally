@@ -7,7 +7,7 @@
       <div class=" container-fluid">
         <div class="row">
           <div class="col">
-            <BillSplitter/>
+            <BillSplitter :totalTipAmount="1500"/>
           </div>
           <div class="col">
             <TouchCalculator/>
